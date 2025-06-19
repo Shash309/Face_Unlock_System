@@ -1,0 +1,161 @@
+2025-06-15 13:52:04,158 - INFO - Created directory for known faces: known_faces
+2025-06-15 13:53:32,904 - INFO - No existing face recognition model found. Will create new one when faces are added.
+2025-06-15 13:54:46,862 - INFO - No existing face recognition model found. Will create new one when faces are added.
+2025-06-15 13:55:03,430 - INFO - Serving root page
+2025-06-15 13:55:10,539 - INFO - Received unlock request
+2025-06-15 13:55:10,598 - INFO - Detected 2 faces in the image
+2025-06-15 13:55:10,599 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:55:10,612 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:55:10,612 - WARNING - No matching face found
+2025-06-15 13:55:12,679 - INFO - Received unlock request
+2025-06-15 13:55:12,771 - INFO - Detected 1 faces in the image
+2025-06-15 13:55:12,771 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:55:12,772 - WARNING - No matching face found
+2025-06-15 13:55:14,182 - INFO - Received unlock request
+2025-06-15 13:55:14,265 - INFO - Detected 1 faces in the image
+2025-06-15 13:55:14,265 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:55:14,265 - WARNING - No matching face found
+2025-06-15 13:55:15,370 - INFO - Received unlock request
+2025-06-15 13:55:15,434 - INFO - Detected 2 faces in the image
+2025-06-15 13:55:15,435 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:55:15,436 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:55:15,436 - WARNING - No matching face found
+2025-06-15 13:57:00,329 - INFO - No existing face recognition model found. Will create new one when faces are added.
+2025-06-15 13:57:21,004 - INFO - Serving root page
+2025-06-15 13:57:24,262 - INFO - Received unlock request
+2025-06-15 13:57:24,497 - INFO - Detected 1 faces in the image
+2025-06-15 13:57:24,498 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:24,499 - WARNING - No matching face found
+2025-06-15 13:57:25,805 - INFO - Received unlock request
+2025-06-15 13:57:25,866 - INFO - Detected 2 faces in the image
+2025-06-15 13:57:25,866 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:25,867 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:25,867 - WARNING - No matching face found
+2025-06-15 13:57:27,688 - INFO - Received unlock request
+2025-06-15 13:57:27,737 - INFO - Detected 1 faces in the image
+2025-06-15 13:57:27,738 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:27,738 - WARNING - No matching face found
+2025-06-15 13:57:28,438 - INFO - Received unlock request
+2025-06-15 13:57:28,520 - INFO - Detected 2 faces in the image
+2025-06-15 13:57:28,521 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:28,521 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:28,521 - WARNING - No matching face found
+2025-06-15 13:57:29,054 - INFO - Received unlock request
+2025-06-15 13:57:29,111 - INFO - Detected 2 faces in the image
+2025-06-15 13:57:29,112 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:29,112 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:29,113 - WARNING - No matching face found
+2025-06-15 13:57:30,127 - INFO - Received unlock request
+2025-06-15 13:57:30,196 - INFO - Detected 1 faces in the image
+2025-06-15 13:57:30,235 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:30,235 - WARNING - No matching face found
+2025-06-15 13:57:31,313 - INFO - Received unlock request
+2025-06-15 13:57:31,374 - INFO - Detected 2 faces in the image
+2025-06-15 13:57:31,375 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:31,375 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 13:57:31,375 - WARNING - No matching face found
+2025-06-15 14:02:11,484 - INFO - Serving root page
+2025-06-15 14:02:13,742 - INFO - Received unlock request
+2025-06-15 14:02:13,789 - INFO - Detected 1 faces in the image
+2025-06-15 14:02:13,789 - ERROR - Error during face recognition: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\lbph_faces.cpp:406: error: (-5:Bad argument) This LBPH model is not computed yet. Did you call the train method? in function 'cv::face::LBPH::predict'
+
+2025-06-15 14:02:13,791 - WARNING - No matching face found
+2025-06-15 14:05:29,576 - INFO - No existing face recognition model found. Will create new one when faces are added.
+2025-06-15 14:05:35,999 - INFO - Serving root page
+2025-06-15 14:05:40,286 - INFO - Received add face request
+2025-06-15 14:05:40,569 - INFO - Detected 2 faces in the image
+2025-06-15 14:05:40,571 - INFO - Saved face image to known_faces\face_20250615_140540.jpg
+2025-06-15 14:05:40,586 - INFO - Added face for label: face_20250615_140540
+2025-06-15 14:05:40,595 - INFO - Trained face recognizer with 1 faces
+2025-06-15 14:05:40,595 - INFO - Successfully retrained face recognizer
+2025-06-15 14:05:43,843 - INFO - Received unlock request
+2025-06-15 14:05:43,904 - INFO - Detected 2 faces in the image
+2025-06-15 14:05:43,906 - INFO - Face recognition result - Label: 0, Confidence: 66.74500548456835
+2025-06-15 14:05:43,906 - INFO - Face recognized successfully
+2025-06-15 14:09:13,774 - INFO - Serving root page
+2025-06-15 14:09:20,907 - INFO - Received add face request
+2025-06-15 14:09:20,940 - INFO - Detected 2 faces in the image
+2025-06-15 14:09:20,942 - INFO - Saved face image to known_faces\face_20250615_140920.jpg
+2025-06-15 14:09:20,953 - INFO - Added face for label: face_20250615_140540
+2025-06-15 14:09:20,961 - INFO - Added face for label: face_20250615_140920
+2025-06-15 14:09:20,973 - INFO - Trained face recognizer with 2 faces
+2025-06-15 14:09:20,973 - INFO - Successfully retrained face recognizer
+2025-06-15 14:09:24,181 - INFO - Received unlock request
+2025-06-15 14:09:24,223 - INFO - Detected 2 faces in the image
+2025-06-15 14:09:24,225 - INFO - Face recognition result - Label: 1, Confidence: 81.55122315191015
+2025-06-15 14:09:24,226 - INFO - Face recognition result - Label: 0, Confidence: 143.83939484620828
+2025-06-15 14:09:24,226 - WARNING - No matching face found
+2025-06-15 14:09:27,434 - INFO - Received unlock request
+2025-06-15 14:09:27,479 - INFO - Detected 2 faces in the image
+2025-06-15 14:09:27,480 - INFO - Face recognition result - Label: 1, Confidence: 69.4401341544081
+2025-06-15 14:09:27,480 - INFO - Face recognized successfully
+2025-06-15 14:10:38,543 - INFO - Received unlock request
+2025-06-15 14:10:38,582 - INFO - Detected 1 faces in the image
+2025-06-15 14:10:38,584 - INFO - Face recognition result - Label: 1, Confidence: 95.52555566601488
+2025-06-15 14:10:38,585 - WARNING - No matching face found
+2025-06-15 14:10:40,331 - INFO - Received unlock request
+2025-06-15 14:10:40,372 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:40,374 - INFO - Face recognition result - Label: 0, Confidence: 75.92180783016943
+2025-06-15 14:10:40,376 - INFO - Face recognition result - Label: 0, Confidence: 138.47970663100418
+2025-06-15 14:10:40,376 - WARNING - No matching face found
+2025-06-15 14:10:41,061 - INFO - Received unlock request
+2025-06-15 14:10:41,105 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:41,107 - INFO - Face recognition result - Label: 1, Confidence: 88.28160769105732
+2025-06-15 14:10:41,108 - INFO - Face recognition result - Label: 0, Confidence: 139.78708589837674
+2025-06-15 14:10:41,110 - WARNING - No matching face found
+2025-06-15 14:10:41,841 - INFO - Received unlock request
+2025-06-15 14:10:41,877 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:41,879 - INFO - Face recognition result - Label: 0, Confidence: 87.32424459963457
+2025-06-15 14:10:41,880 - INFO - Face recognition result - Label: 0, Confidence: 141.66302195038648
+2025-06-15 14:10:41,881 - WARNING - No matching face found
+2025-06-15 14:10:42,488 - INFO - Received unlock request
+2025-06-15 14:10:42,532 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:42,535 - INFO - Face recognition result - Label: 0, Confidence: 81.89138600739693
+2025-06-15 14:10:42,535 - INFO - Face recognition result - Label: 0, Confidence: 137.54028948807576
+2025-06-15 14:10:42,536 - WARNING - No matching face found
+2025-06-15 14:10:43,824 - INFO - Received add face request
+2025-06-15 14:10:43,873 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:43,921 - INFO - Saved face image to known_faces\face_20250615_141043.jpg
+2025-06-15 14:10:43,934 - INFO - Added face for label: face_20250615_140540
+2025-06-15 14:10:43,943 - INFO - Added face for label: face_20250615_140920
+2025-06-15 14:10:43,956 - INFO - Added face for label: face_20250615_141043
+2025-06-15 14:10:43,974 - INFO - Trained face recognizer with 3 faces
+2025-06-15 14:10:43,975 - INFO - Successfully retrained face recognizer
+2025-06-15 14:10:44,890 - INFO - Received unlock request
+2025-06-15 14:10:44,928 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:44,930 - INFO - Face recognition result - Label: 2, Confidence: 69.0715856620768
+2025-06-15 14:10:44,930 - INFO - Face recognized successfully
+2025-06-15 14:10:46,234 - INFO - Received unlock request
+2025-06-15 14:10:46,270 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:46,310 - INFO - Face recognition result - Label: 2, Confidence: 69.14356558184535
+2025-06-15 14:10:46,310 - INFO - Face recognized successfully
+2025-06-15 14:10:46,768 - INFO - Received unlock request
+2025-06-15 14:10:46,802 - INFO - Detected 3 faces in the image
+2025-06-15 14:10:46,804 - INFO - Face recognition result - Label: 2, Confidence: 132.72220726506833
+2025-06-15 14:10:46,806 - INFO - Face recognition result - Label: 2, Confidence: 67.66284119873016
+2025-06-15 14:10:46,807 - INFO - Face recognized successfully
+2025-06-15 14:10:47,126 - INFO - Received unlock request
+2025-06-15 14:10:47,161 - INFO - Detected 2 faces in the image
+2025-06-15 14:10:47,163 - INFO - Face recognition result - Label: 2, Confidence: 69.8741643717342
+2025-06-15 14:10:47,163 - INFO - Face recognized successfully
+2025-06-15 14:11:03,156 - INFO - Received unlock request
+2025-06-15 14:11:03,201 - INFO - Detected 1 faces in the image
+2025-06-15 14:11:03,203 - INFO - Face recognition result - Label: 2, Confidence: 69.55306610442076
+2025-06-15 14:11:03,204 - INFO - Face recognized successfully
