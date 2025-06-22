@@ -5,6 +5,8 @@ import os
 import json
 from colorama import Fore, Style, init
 import re
+import face_recognition
+
 init(autoreset=True)
 
 class FaceRecognizer:
@@ -49,18 +51,13 @@ class FaceRecognizer:
                     print(Fore.RED + f"Error loading {filename}: {e}" + Style.RESET_ALL)
 
     def _load_reference_face(self, img_path):
-        img = cv2.imread(img_path)
-        if img is None:
-            raise Exception("Could not read image.")
+        img = face_recognition.load_image_file(img_path)
+        encodings = face_recognition.face_encodings(img)
 
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        faces = self.face_cascade.detectMultiScale(gray, 1.3, 5)
-
-        if len(faces) == 0:
+        if not encodings:
             raise Exception("No face found in reference image.")
 
-        x, y, w, h = faces[0]
-        return img[y:y+h, x:x+w]
+        return encodings[0]
 
     def add_reference_face(self, base64_image, name):
         img_data = base64.b64decode(base64_image.split(',')[-1])
@@ -70,19 +67,23 @@ class FaceRecognizer:
         if img is None:
             raise Exception("Could not decode image from base64")
 
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        faces = self.face_cascade.detectMultiScale(gray, 1.3, 5)
-
-        if len(faces) == 0:
+        # The face_recognition library uses RGB images, but OpenCV uses BGR.
+        # So, we need to convert from BGR to RGB.
+        rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        
+        face_locations = face_recognition.face_locations(rgb_img)
+        if not face_locations:
             raise Exception("No face found in the image")
 
-        x, y, w, h = faces[0]
-        face_roi = img[y:y+h, x:x+w]
+        # For adding a new face, we still save the cropped face image for reference,
+        # but we'll use encodings for comparison.
+        top, right, bottom, left = face_locations[0]
+        face_roi = img[top:bottom, left:right]
 
         # Find the lowest available reference number
         existing_numbers = set()
         for fname in os.listdir(self.reference_dir):
-            match = re.match(r'reference(\\d*)\.jpg', fname)
+            match = re.match(r'reference(\\d*)\\.jpg', fname)
             if match:
                 num = match.group(1)
                 if num == '':
@@ -106,22 +107,27 @@ class FaceRecognizer:
         with open(self.metadata_file, 'w') as f:
             json.dump(metadata, f)
 
-        self.reference_faces[face_filename] = {
-            'face': face_roi,
-            'name': name
-        }
+        # Reload all faces to update the encodings in memory
+        self._load_all_reference_faces()
 
         print(Fore.GREEN + f"Added face for {name} with ID: {face_filename}" + Style.RESET_ALL)
         return face_id
 
-    def _compare_faces(self, face1, face2):
-        size = (100, 100)
-        face1 = cv2.resize(face1, size)
-        face2 = cv2.resize(face2, size)
-        face1_gray = cv2.cvtColor(face1, cv2.COLOR_BGR2GRAY)
-        face2_gray = cv2.cvtColor(face2, cv2.COLOR_BGR2GRAY)
-        result = cv2.matchTemplate(face1_gray, face2_gray, cv2.TM_CCOEFF_NORMED)
-        return np.max(result)
+    def _compare_faces(self, known_encoding, unknown_encoding):
+        """
+        Compare a list of face encodings against a candidate encoding to see if they match.
+        """
+        # Returns a list of True/False values.
+        matches = face_recognition.compare_faces([known_encoding], unknown_encoding)
+        
+        # face_distance returns a score for each face, the lower the score the more similar.
+        # A typical cutoff for strict systems is 0.6.
+        face_dist = face_recognition.face_distance([known_encoding], unknown_encoding)[0]
+        
+        # We'll convert distance to similarity: 1 - distance
+        similarity = 1 - face_dist
+        
+        return matches[0], similarity
 
     def recognize(self, base64_image):
         print(Fore.CYAN + "Starting recognition..." + Style.RESET_ALL)
@@ -135,44 +141,55 @@ class FaceRecognizer:
         if img is None:
             return "No Match", 0.0, None, "Unknown"
 
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        faces = self.face_cascade.detectMultiScale(gray, 1.3, 5)
+        rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        
+        face_locations = face_recognition.face_locations(rgb_img)
+        unknown_encodings = face_recognition.face_encodings(rgb_img, face_locations)
 
-        if len(faces) == 0:
+        if not unknown_encodings:
             return "No Match", 0.0, None, "Unknown"
 
         best_similarity = -1
+        best_match_name = "Unknown"
         best_location = None
-        best_name = "Unknown"
-        best_face_id = None
         match_status = "No Match"
 
-        for (x, y, w, h) in faces:
-            face_roi = img[y:y+h, x:x+w]
-
+        # Loop through all the faces found in the unknown image
+        for i, unknown_encoding in enumerate(unknown_encodings):
+            top, right, bottom, left = face_locations[i]
+            
+            # See if the face is a match for the known face(s)
             for face_id, face_data in self.reference_faces.items():
-                similarity = self._compare_faces(face_roi, face_data['face'])
-                print(Fore.CYAN + f"Similarity with {face_id}: {similarity:.2f}" + Style.RESET_ALL)
+                known_encoding = face_data['face'] # This is now an encoding
+                
+                is_match, similarity = self._compare_faces(known_encoding, unknown_encoding)
+                
+                print(Fore.CYAN + f"Similarity with {face_data['name']}: {similarity:.2f}" + Style.RESET_ALL)
 
-                if similarity > best_similarity:
+                if is_match and similarity > best_similarity:
                     best_similarity = similarity
-                    best_location = (x, y, w, h)
-                    best_name = face_data['name']
-                    best_face_id = face_id
-                    match_status = "Match" if similarity > 0.3 else "No Match"
-
-        # Always return 'Shashwat' if the best match is reference.jpg
-        if best_face_id == 'reference.jpg':
-            best_name = 'Shashwat'
+                    best_match_name = face_data['name']
+                    best_location = (top, right, bottom, left)
+        
+        # A typical threshold for face_recognition library is around 0.6 for distance.
+        # Since we converted it to similarity (1 - distance), our threshold will be 0.4.
+        # Let's be a bit stricter, let's use 0.5
+        if best_similarity > 0.5:
+            match_status = "Match"
+        else:
+            match_status = "No Match"
+            best_match_name = "Unknown"
 
         if best_location:
-            x, y, w, h = best_location
+            top, right, bottom, left = best_location
+            x, y, w, h = left, top, right - left, bottom - top # Convert to x,y,w,h for cv2.rectangle
+            
             color = self.colors[match_status]
-            label = f"{match_status} ({best_similarity:.2f})"
+            label = f"{best_match_name} ({best_similarity:.2f})"
             cv2.rectangle(img, (x, y), (x+w, y+h), color, 2)
-            cv2.putText(img, label, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2)
+            cv2.putText(img, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2)
 
         _, buffer = cv2.imencode('.jpg', img)
         processed_image = base64.b64encode(buffer).decode('utf-8')
 
-        return match_status, best_similarity, processed_image, best_name
+        return match_status, best_similarity, processed_image, best_match_name
