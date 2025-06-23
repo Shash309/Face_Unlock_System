@@ -2,6 +2,42 @@
 
 This project implements a web-based face unlock system with a React frontend and a FastAPI backend. The system allows users to initiate a face scan, capture an image, and compare it against a pre-defined reference face for access control.
 
+## Features
+
+- Web-based face recognition for access control
+- React frontend with live webcam capture and user-friendly interface
+- FastAPI backend for image processing and face comparison
+- Add new reference faces dynamically (with name metadata)
+- Real-time feedback: Access Granted/Denied with visual cues
+- Confetti animation on successful unlock
+- Logs and status sections for transparency
+- Modular codebase for easy extension
+
+## Scope of Work
+
+**Included:**
+- Single-user face unlock system (compares against one or more reference faces)
+- Local image processing (no cloud upload)
+- Basic UI for scanning, feedback, and adding faces
+- Simple logging and status reporting
+
+**Not Included:**
+- Multi-user authentication or user management
+- Advanced anti-spoofing or liveness detection
+- Mobile app or deployment scripts
+- Production-grade security hardening
+
+## Citations & Acknowledgements
+
+- [face_recognition](https://github.com/ageitgey/face_recognition): Python library for face detection and recognition
+- [OpenCV](https://opencv.org/): Computer vision library for image processing
+- [FastAPI](https://fastapi.tiangolo.com/): Web framework for the backend API
+- [React](https://react.dev/): Frontend library for building user interfaces
+- [Vite](https://vitejs.dev/): Frontend build tool
+- [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework
+- [colorama](https://pypi.org/project/colorama/): For colored terminal output
+- [numpy](https://numpy.org/): Numerical operations in Python
+
 ## Project Structure
 
 ```
