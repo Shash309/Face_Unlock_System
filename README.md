@@ -1,125 +1,145 @@
 # Face Unlock System
 
-This project implements a web-based face unlock system with a React frontend and a FastAPI backend. The system allows users to initiate a face scan, capture an image, and compare it against a pre-defined reference face for access control.
+A modern, robust web-based face unlock and liveness verification system using React (frontend) and FastAPI (backend). The system uses face recognition and gesture-based liveness detection for secure access control.
+
+---
 
 ## Features
 
-- Web-based face recognition for access control
-- React frontend with live webcam capture and user-friendly interface
-- FastAPI backend for image processing and face comparison
-- Add new reference faces dynamically (with name metadata)
-- Real-time feedback: Access Granted/Denied with visual cues
-- Confetti animation on successful unlock
-- Logs and status sections for transparency
-- Modular codebase for easy extension
+- **Face Recognition**: Unlock access by matching your face to registered faces.
+- **Liveness Detection**: Prove you are a real person by performing random gestures (blink, open mouth, show two fingers, show one hand, thumbs up).
+- **Modern UI/UX**: Clean, responsive, and visually appealing interface with clear feedback and animations.
+- **Add New Faces**: Register new users by recording a video or uploading an image.
+- **Security**: Only real, recognized faces and correct gestures are accepted.
+- **Feedback**: Success/failure messages, confetti animation, and countdown on unlock.
+- **Logs & Status**: View logs and system status for transparency.
 
-## Scope of Work
+---
 
-**Included:**
-- Single-user face unlock system (compares against one or more reference faces)
-- Local image processing (no cloud upload)
-- Basic UI for scanning, feedback, and adding faces
-- Simple logging and status reporting
+## Architecture
 
-**Not Included:**
-- Multi-user authentication or user management
-- Advanced anti-spoofing or liveness detection
-- Mobile app or deployment scripts
-- Production-grade security hardening
+- **Frontend**: React + TypeScript + Tailwind CSS (Vite build)
+- **Backend**: FastAPI (Python) with OpenCV, face_recognition, and MediaPipe
+- **Data Storage**: Reference faces and metadata stored in `backend/static/known_faces/`
 
-## Citations & Acknowledgements
-
-- [face_recognition](https://github.com/ageitgey/face_recognition): Python library for face detection and recognition
-- [OpenCV](https://opencv.org/): Computer vision library for image processing
-- [FastAPI](https://fastapi.tiangolo.com/): Web framework for the backend API
-- [React](https://react.dev/): Frontend library for building user interfaces
-- [Vite](https://vitejs.dev/): Frontend build tool
-- [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework
-- [colorama](https://pypi.org/project/colorama/): For colored terminal output
-- [numpy](https://numpy.org/): Numerical operations in Python
+---
 
 ## Project Structure
 
 ```
 task_2/
-  - backend/
-    - face_recognizer.py          # Core face recognition logic
-    - main.py                     # FastAPI backend application
-    - requirements.txt            # Python dependencies
-    - static/
-      - assets/                   # Frontend build assets
-      - known_faces/              # Stores reference images (e.g., reference.jpg)
-      - index.html                # Frontend entry point (served by backend)
-  - frontend/
-    - src/
-      - App.tsx                   # Main React application component
-      - components/               # React components (HomePage, StatusSection, etc.)
-      - ... (other frontend files)
-    - package.json                # Frontend dependencies and scripts
+  backend/
+    main.py                # FastAPI backend, API endpoints
+    face_recognizer.py     # Face recognition logic
+    requirements.txt       # Backend dependencies
+    static/
+      known_faces/         # Reference face images & metadata
+      assets/              # Frontend build assets
+      index.html           # Frontend entry (served by backend)
+  frontend/
+    src/
+      App.tsx, components/ # Main React app and UI components
+    package.json           # Frontend dependencies/scripts
+  README.md                # Project documentation
 ```
 
-## Getting Started
+---
 
-Follow these steps to set up and run the Face Unlock System locally.
+## Setup Instructions
 
 ### Prerequisites
-
-*   **Python 3.8+**: For the backend.
-*   **pip**: Python package installer (usually comes with Python).
-*   **Node.js (LTS recommended)**: For the frontend.
-*   **npm** (Node Package Manager, usually comes with Node.js).
-*   **A webcam**: Required for face scanning.
+- **Python 3.8+** (for backend)
+- **Node.js (LTS)** and **npm** (for frontend)
+- **A webcam** (for face scan and liveness)
 
 ### 1. Backend Setup
-
-Navigate to the `backend` directory and install the Python dependencies:
-
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
+- Place at least one reference image (e.g. `reference.jpg`) in `backend/static/known_faces/`.
+- (Optional) Edit `face_metadata.json` to map image files to user names.
 
-**Important**: Ensure you have a reference image named `reference.jpg` placed in the `backend/static/known_faces/` directory. This image will be used to compare against scanned faces.
-
-Run the FastAPI backend server:
-
+Start the backend server:
 ```bash
 uvicorn main:app --host 127.0.0.1 --port 8000
 ```
 
-The backend server will start on `http://127.0.0.1:8000`. Keep this terminal running.
-
 ### 2. Frontend Setup
-
-Open a **new terminal** and navigate to the `frontend` directory:
-
 ```bash
 cd frontend
-```
-
-Install the frontend dependencies:
-
-```bash
 npm install
-```
-
-Start the React development server:
-
-```bash
 npm run dev
 ```
+- The app will open at `http://localhost:5173`.
 
-The frontend application will typically open in your browser at `http://localhost:5173`.
+---
 
-### 3. Using the Application
+## Usage Guide
 
-1.  **Access the Frontend**: Open your web browser and navigate to `http://localhost:5173`.
-2.  **Start Face Scan**: On the homepage, click the "Start Face Scan" button.
-3.  **Camera Access**: Your browser will likely prompt you to grant camera access. Allow it.
-4.  **Capture Photo**: Once the camera feed is visible, click the "Capture Photo" button. This will send your captured image to the backend for analysis.
-5.  **View Results**:
-    *   If your face matches the `reference.jpg` image, you will see an "Access Granted" message, along with a confetti animation.
-    *   If your face does not match, you will see an "Access Denied" message.
-6.  **Scan Again**: Click the "Scan Again" button to return to the homepage and initiate a new scan.
+### Unlock Flow
+1. **Start Face Scan**: Click "Start Face Scan" and allow camera access.
+2. **Face Recognition**: Look at the camera. Only a real, recognized face will pass. If your face is covered or not recognized, you must retry.
+3. **Liveness Challenge**: Perform the prompted gesture (randomly chosen: blink, open mouth, show two fingers, show one hand, thumbs up). Only the correct gesture will pass.
+4. **Success**: If both steps pass, you see a celebratory unlock screen and are redirected home after a countdown.
+5. **Failure**: If any step fails, you get a clear error and can retry.
 
-Enjoy your Face Unlock System! 
+### Adding a New Face
+- Go to "Add Face".
+- Enter a name and record a short video (or upload an image).
+- The backend extracts frames, detects the face, and adds it to the database.
+- The new face can now unlock the system.
+
+### Gesture/Liveness Detection
+- Supported gestures: **blink**, **open mouth**, **show two fingers (✌️)**, **show one hand (🖐️)**, **thumbs up (👍)**
+- Only the requested gesture will pass. For example, "show one hand" will not pass if you only show a thumbs up.
+- Liveness is checked using MediaPipe and OpenCV on the backend.
+
+---
+
+## API Endpoints (Backend)
+- `POST /unlock_face` — Face recognition from video/image (step 1)
+- `POST /challenge_liveness` — Liveness/gesture verification (step 2)
+- `POST /add_face` — Add a new face (image + name)
+- `POST /upload_video` — Add face via video (frames extracted automatically)
+
+---
+
+## Troubleshooting & Tips
+- **Face not recognized?**
+  - Make sure your face is clearly visible and matches a registered face.
+  - Add your face via the "Add Face" section if needed.
+- **Gesture not detected?**
+  - Perform the exact gesture shown. Only the correct gesture will pass.
+- **Camera not working?**
+  - Check browser permissions and ensure no other app is using the webcam.
+- **Backend errors?**
+  - Check the backend terminal for error logs.
+
+---
+
+## Dependencies
+
+### Backend
+- fastapi, uvicorn, python-multipart, opencv-python, colorama, numpy, face_recognition
+
+### Frontend
+- react, react-dom, lucide-react, tailwindcss, vite, typescript, eslint, postcss
+
+---
+
+## Credits & Acknowledgements
+- [face_recognition](https://github.com/ageitgey/face_recognition)
+- [OpenCV](https://opencv.org/)
+- [MediaPipe](https://mediapipe.dev/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [colorama](https://pypi.org/project/colorama/)
+- [numpy](https://numpy.org/)
+
+---
+
+## License
+This project is for educational and demonstration purposes. For production use, review and enhance security, privacy, and deployment practices. 

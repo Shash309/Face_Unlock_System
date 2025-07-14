@@ -146,18 +146,20 @@ function App() {
                     setProcessedImage(undefined);
                     setActiveSection('home');
                   }}
-                  onScanComplete={(success, name, processedImg) => {
-                    setAccessStatus(success ? 'granted' : 'denied');
-                    setRecognizedName(name);
-                    setProcessedImage(processedImg ? `data:image/jpeg;base64,${processedImg}` : undefined);
-                    // Add to logs
-                    const newLog: LogEntry = {
-                      id: Date.now().toString(),
-                      name: name,
-                      status: success ? 'granted' : 'denied',
-                      timestamp: new Date(),
-                    };
-                    setLogs(prev => [newLog, ...prev]);
+                  onScanComplete={({ success, name, processedImg, step }) => {
+                    if (step === 'done') {
+                      setAccessStatus(success ? 'granted' : 'denied');
+                      setRecognizedName(name);
+                      setProcessedImage(processedImg ? `data:image/jpeg;base64,${processedImg}` : undefined);
+                      // Add to logs
+                      const newLog: LogEntry = {
+                        id: Date.now().toString(),
+                        name: name,
+                        status: success ? 'granted' : 'denied',
+                        timestamp: new Date(),
+                      };
+                      setLogs(prev => [newLog, ...prev]);
+                    }
                   }}
                   processedImage={processedImage}
                 />
